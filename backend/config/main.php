@@ -13,6 +13,11 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
+            
+            'parsers'=>[
+                'application/json' => 'yii\web\JsonParser'
+            ]
+        
         ],
         'user' => [
             'identityClass' => 'common\models\User',
@@ -35,14 +40,40 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-    /*
-      'urlManager' => [
-      'enablePrettyUrl' => true,
-      'showScriptName' => false,
-      'rules' => [
-      ],
-      ],
-     */
+    
+        'urlManager' => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            
+            'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule', 
+                    'controller' => 'api/establishment',
+                    'pluralize'=>false,
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ],
+                    'extraPatterns' => [    
+                        'POST' => 'create', 
+                        'PUT {id}' => 'update',
+                        'PATCH {id}' => 'update',
+                        'DELETE {id}' => 'delete',
+                        'GET {id}' => 'view',
+                        'GET {count}' => 'index',
+                    ],
+                ]
+            
+            ],
+        ],
+     
     ],
+    
+    
+    'modules' => [
+        'api' => [
+            'class' => 'backend\modules\api\Api',
+        ],
+    ],
+    
     'params' => $params,
 ];
