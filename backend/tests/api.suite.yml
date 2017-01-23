@@ -1,9 +1,10 @@
-class_name: UnitTester
-
-
+class_name: ApiTester
 modules:
     enabled:
         - \backend\tests\Helper\Api
+        - REST:
+            url: 'http://localhost/stable/second_stable/apirest_ivc/backend/web/api'
+            depends: Yii2
         - Db:
             dsn: 'pgsql:host=localhost;dbname=ivc_test'
             user: 'postgres'
@@ -11,6 +12,8 @@ modules:
             cleanup: false
             reconnect: true
 
+
     config:
         - Yii2
         
+    
