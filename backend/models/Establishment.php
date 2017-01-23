@@ -121,4 +121,13 @@ class Establishment extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Visit::className(), ['id_establishment' => 'id']);
     }
+    
+    public static function getId($commercial_registration){
+        $result="";
+        $model= self::find()->where(['commercial_registration'=>$commercial_registration])->one();
+        if ($model) {
+            $result= $model->id;
+        }
+        return $result;
+    }
 }
