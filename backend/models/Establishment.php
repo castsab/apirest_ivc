@@ -68,7 +68,7 @@ class Establishment extends \yii\db\ActiveRecord
             [['formal', 'digit_verification_establishment', 'digit_verification_owner', 'digit_verification_legal_representative', 'type_history', 'type_identification_establishment', 'type_identification_owner', 'type_identification_legal_representative'], 'string', 'max' => 1],
             [['commercial_registration', 'commercial_registration_owner'], 'string', 'max' => 12],
             [['number_identification_establishment', 'number_identification_owner', 'number_identificacion_legal_representative'], 'string', 'max' => 14],
-            [['business_name'], 'require']
+            [['business_name'], 'required']
         ];
     }
 
