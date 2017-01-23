@@ -1,24 +1,21 @@
 <?php
 namespace backend\tests;
 use backend\models\Establishment;
+use backend\modules\api\controllers\EstablishmentController;
 
-class EstablishmentTest extends \PHPUnit_Framework_TestCase
+class ApiRestEstablishmentTest extends \PHPUnit_Framework_TestCase
 {
+    public $datostest;
     
-    // tests
-    public function testSaveEstablishment()
+    public function setUp()
     {
-        
-        $establishment = new Establishment();
-        
-        $datostest = [
+        $this->datostest = [
             "upz" => "a",
-            "lastname_owner" => "a",
-            "apellidos_representante_legal" => "a",
-            "lastname_legal_representative" => "a",
-            "ciiu1" => "a",
-            "ciiu2" => "a",
-            "ciiu3" => "a",
+            "lastname_owner" => "b",
+            "lastname_legal_representative" => "c",
+            "ciiu1" => "123",
+            "ciiu2" => "456",
+            "ciiu3" => "789",
             "address_commercial" => "a",
             "address_standard" => "a",
             "address_notification" => "a",
@@ -30,7 +27,7 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
             "digit_verification_legal_representative" => "a",
             "locality" => "a",
             "email" => "a",
-            "commercial_registration" => "a",
+            "commercial_registration" => "1111",
             "commercial_registration_owner" => "a",
             "number_identification_establishment" => "a",
             "number_identification_owner" => "a",
@@ -47,11 +44,17 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
             "type_identification_owner" => "a",
             "type_identification_legal_representative" => "a"
         ];
-        
-        $establishment->upz = "a";
-        
-        //$establishment->load($datostest,'');
+    }
+    
+    public function testSaveEstablishment(){
+        $establishment = new Establishment();
+        $establishment->load($this->datostest,'');
         $this->assertEquals($establishment->save(), 1);
-       
+    }
+    
+    public function testValidateIfThisRegisteredCommercialRegistration(){
+        $establishment = new Establishment();
+        $model = $establishment->find()->where(['commercial_registration'=>$this->datostest['commercial_registration']])->one();
+        $this->assertEquals($model->commercial_registration,$this->datostest['commercial_registration']);
     }
 }
