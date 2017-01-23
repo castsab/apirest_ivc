@@ -29,26 +29,10 @@ class EstablishmentController extends ActiveController
     }
     
     public function actionCreate(){
-        if($this->getValidateIfThisRegisteredCommercialRegistration(Yii::$app->request->post('commercial_registration')) == false)
-            $model = new Establishment();
-        else
-            $model = Establishment::findOne(['id'=>Establishment::getId(Yii::$app->request->post('commercial_registration'))]);
-        
+        $model = new Establishment();
         $model->load(Yii::$app->request->post(),'');
-        
-        if(!empty(Yii::$app->request->post('business_name')))
-            $model->save();
+        $model->save();
     }
-    
-    public function getValidateIfThisRegisteredCommercialRegistration($commercial_registration = ''){
-        $model = Establishment::getId($commercial_registration);
-        if($model)
-            return true;
-        else
-            return false;
-        
-    }
-    
 }
 
 
