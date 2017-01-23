@@ -52,7 +52,6 @@ class ApiRestEstablishmentTest extends \PHPUnit_Framework_TestCase
         $establishment->load($this->datostest,'');
         $this->assertEquals($establishment->save(), 1);
     }
-    
     public function testValidateIfThisRegisteredCommercialRegistration(){
         $establishment = new Establishment();
         $model = $establishment->find()->where(['commercial_registration'=>$this->datostest['commercial_registration']])->one();
