@@ -30,10 +30,6 @@ class EstablishmentController extends ActiveController
     
     public function actionCreate(){
         $model = new Establishment();
-        
-        print_r(Yii::$app->request->post());
-        die();
-        
         $model->load(Yii::$app->request->post(),'');
         $model->save();
         return $model;
