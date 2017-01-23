@@ -32,6 +32,7 @@ class EstablishmentController extends ActiveController
         $model = new Establishment();
         $model->load(Yii::$app->request->post(),'');
         $model->save();
+        return $model;
     }
 }
 
