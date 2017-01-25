@@ -1,7 +1,7 @@
 <?php
-namespace backend\tests;
+require(__DIR__ . '../../../backend/models/Establishment.php');
+
 use backend\models\Establishment;
-use backend\modules\api\controllers\EstablishmentController;
 
 class EstablishmentTest extends \PHPUnit_Framework_TestCase
 {
