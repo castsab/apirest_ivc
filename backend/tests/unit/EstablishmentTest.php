@@ -5,6 +5,7 @@ use backend\modules\api\controllers\EstablishmentController;
 
 class EstablishmentTest extends \PHPUnit_Framework_TestCase
 {
+
     public $datostest;
     
     public function setUp()
@@ -51,5 +52,4 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
         $establishment->load($this->datostest,'');
         $this->assertEquals($establishment->save(), 1);
     }
-    
 }
