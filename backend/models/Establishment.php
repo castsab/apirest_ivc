@@ -69,7 +69,8 @@ class Establishment extends \yii\db\ActiveRecord
             [['commercial_registration', 'commercial_registration_owner'], 'string', 'max' => 12],
             [['number_identification_establishment', 'number_identification_owner', 'number_identificacion_legal_representative'], 'string', 'max' => 14],
             [['business_name'], 'required'],
-            [['commercial_registration'], 'unique'],
+            [['commercial_registration','business_name'], 'unique'],
+            [['commercial_registration','business_name'],'checkCharactersNotValid'],
         ];
     }
 
@@ -132,4 +133,10 @@ class Establishment extends \yii\db\ActiveRecord
         }
         return $result;
     }
+    
+    public function checkCharactersNotValid($attribute){
+        if($this->$attribute == '?')
+            $this->addError($attribute,'Characters ? not valid');
+    }
+
 }
