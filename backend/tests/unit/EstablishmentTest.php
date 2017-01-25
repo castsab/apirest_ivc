@@ -3,7 +3,7 @@ namespace backend\tests;
 use backend\models\Establishment;
 use backend\modules\api\controllers\EstablishmentController;
 
-class ApiRestEstablishmentTest extends \PHPUnit_Framework_TestCase
+class EstablishmentTest extends \PHPUnit_Framework_TestCase
 {
     public $datostest;
     
@@ -27,7 +27,7 @@ class ApiRestEstablishmentTest extends \PHPUnit_Framework_TestCase
             "digit_verification_legal_representative" => "a",
             "locality" => "a",
             "email" => "a",
-            "commercial_registration" => "1111",
+            "commercial_registration" => "3333",
             "commercial_registration_owner" => "a",
             "number_identification_establishment" => "a",
             "number_identification_owner" => "a",
@@ -52,9 +52,4 @@ class ApiRestEstablishmentTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($establishment->save(), 1);
     }
     
-    public function testValidateIfThisRegisteredCommercialRegistration(){
-        $establishment = new Establishment();
-        $model = $establishment->find()->where(['commercial_registration'=>$this->datostest['commercial_registration']])->one();
-        $this->assertEquals($model->commercial_registration,$this->datostest['commercial_registration']);
-    }
 }
