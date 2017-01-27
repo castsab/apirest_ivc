@@ -29,10 +29,26 @@ class EstablishmentController extends ActiveController
     }
     
     public function actionCreate(){
-        $model = new Establishment();
-        $model->load(Yii::$app->request->post(),'');
-        $model->save();
-        return $model;
+        $arrayDatos = Yii::$app->request->post();
+        if($this->getValidateIsArrayMultidimencional($arrayDatos) == true){
+            foreach ($arrayDatos as $key => $value) {
+                $establishment = new Establishment(); 
+                $establishment->load($arrayDatos[$key],'');
+                $establishment->save();
+            }
+        }else{
+            $establishment = new Establishment(); 
+            $establishment->load($arrayDatos,'');
+            $establishment->save();
+        }
+        return $establishment;
+    }
+    
+    public function getValidateIsArrayMultidimencional($array){
+        if (count($array) != count($array, COUNT_RECURSIVE)) 
+            return true;
+        else
+            return false;
     }
 }
 
