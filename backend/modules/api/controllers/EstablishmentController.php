@@ -4,6 +4,7 @@ namespace backend\modules\api\controllers;
 
 use yii\rest\ActiveController;
 use backend\models\Establishment;
+use backend\models\LogEstablishment;
 
 use Yii;
 
@@ -34,13 +35,18 @@ class EstablishmentController extends ActiveController
             foreach ($arrayDatos as $key => $value) {
                 $establishment = new Establishment(); 
                 $establishment->load($arrayDatos[$key],'');
-                $establishment->save();
+                if($establishment->save() != 1){
+                    $this->setSaveLogEstablishment($arrayDatos[$key],$establishment->getErrors());
+                }
             }
         }else{
             $establishment = new Establishment(); 
             $establishment->load($arrayDatos,'');
-            $establishment->save();
+            if($establishment->save() != 1){
+                $this->setSaveLogEstablishment($arrayDatos,$establishment->getErrors());
+            }
         }
+        
         return $establishment;
     }
     
@@ -49,6 +55,26 @@ class EstablishmentController extends ActiveController
             return true;
         else
             return false;
+    }
+    
+    public function getStrErrors($arrayErrors){
+        $strErrors = '';
+        foreach ($arrayErrors as $key  => $value) {
+            foreach ($arrayErrors[$key] as $k => $value) {
+                $strErrors .= '|'.$arrayErrors[$key][$k];
+            }
+        }
+        return substr($strErrors, 1);
+    }
+    
+    public function setSaveLogEstablishment($arrayDataEstablishment, $arrayErrors){
+        $time = time();
+        $logEstablishment = new LogEstablishment();
+        $arrayDataEstablishment['log'] = $this->getStrErrors($arrayErrors);
+        $arrayDataEstablishment['log_created_at'] = $time;
+        $logEstablishment->load($arrayDataEstablishment,'');
+        $logEstablishment->save();
+        return $logEstablishment;
     }
 }
 
