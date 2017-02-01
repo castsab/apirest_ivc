@@ -97,6 +97,22 @@ return [
                         'GET {id}' => 'view',
                         'GET {count}' => 'index',
                     ],
+                ],
+                  [
+                    'class' => 'yii\rest\UrlRule', 
+                    'controller' => 'api/synchronization',
+                    'pluralize'=>false,
+                    'tokens' => [
+                        '{id}' => '<id:\\w+>'
+                    ],
+                    'extraPatterns' => [    
+                        'POST' => 'create', 
+                        'PUT {id}' => 'update',
+                        'PATCH {id}' => 'update',
+                        'DELETE {id}' => 'delete',
+                        'GET {id}' => 'view',
+                        'GET {count}' => 'index',
+                    ],
                 ]
             
             ],
