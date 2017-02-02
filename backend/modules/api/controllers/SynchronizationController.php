@@ -4,6 +4,7 @@ namespace backend\modules\api\controllers;
 
 use yii\rest\Controller;
 use yii\httpclient\Client;
+use Yii;
 /**
  * Default controller for the `api` module
  */
@@ -27,14 +28,20 @@ class SynchronizationController extends Controller
     {
         return "True";
     }
-    public function actionUpdate( $id )
+    public function actionUpdate( )
     {
-        
+        $data = Yii::$app->request->getBodyParams();
+        $content = [
+            'entity_id' => $data['id'],
+            'table_name' => $data['table_name'],
+            ];
         $client = new Client();
         $response = $client->createRequest()
-        ->setMethod('PUT')
+        ->setFormat(Client::FORMAT_JSON)
+        ->setMethod('POST')
         ->setUrl('http://private-d4f2fa-ivc.apiary-mock.com/synchronization')
+        ->setData($content)
         ->send();
-        return $response->data['status'].' synchronization'.$id;
+        return $response->data['status'];
     }
 }
