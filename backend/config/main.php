@@ -107,7 +107,7 @@ return [
                     ],
                     'extraPatterns' => [    
                         'POST' => 'create', 
-                        'PUT {id}' => 'update',
+                        'PUT' => 'update',
                         'PATCH {id}' => 'update',
                         'DELETE {id}' => 'delete',
                         'GET {id}' => 'view',
