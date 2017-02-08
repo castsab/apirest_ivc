@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . '../../../backend/models/Establishment.php');
+//require(__DIR__ . '../../../backend/models/Establishment.php');
 require(__DIR__ . '../../../backend/models/LogEstablishment.php');
 require(__DIR__ . '../../../backend/modules/api/controllers/EstablishmentController.php');
 
@@ -14,7 +14,7 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->arrayDatosTest = [
-            "upz" => "a",
+            "upz" => "8752",
             "lastname_owner" => "b",
             "lastname_legal_representative" => "c",
             "ciiu1" => "123",
@@ -31,7 +31,7 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
             "digit_verification_legal_representative" => "a",
             "locality" => "a",
             "email" => "a",
-            "commercial_registration" => "57777",
+            "commercial_registration" => "57778",
             "commercial_registration_owner" => "a",
             "number_identification_establishment" => "a",
             "number_identification_owner" => "a",
@@ -41,7 +41,7 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
             "observation" => "a",
             "observation_history" => "a",
             "page_web" => "a",
-            "business_name" => "Establicimiento",
+            "business_name" => "Establicimiento1",
             "phone" => "a",
             "type_history" => "a",
             "type_identification_establishment" => "a",
