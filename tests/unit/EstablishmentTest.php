@@ -51,9 +51,8 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
     }
     
     public function testSaveEstablishment(){
-        $establishment = new Establishment();
-        $establishment->load($this->arrayDatosTest,'');
-        $this->assertEmpty($establishment->save(), 1);
+        $establishmentController = new EstablishmentController($id='', $module='');
+        $this->assertEquals($establishmentController->setSaveEstablishment($this->arrayDatosTest), 1);
     }
     
     public function testRegisterLogIfNotSaveEstablishment() {

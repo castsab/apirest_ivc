@@ -6,6 +6,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-frontend',
+    'timeZone'  => 'America/Bogota',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',

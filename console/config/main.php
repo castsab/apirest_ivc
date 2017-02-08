@@ -10,6 +10,7 @@ $db = require(__DIR__ . '/../../common/config/main-local.php');
 
 return [
     'id' => 'app-console',
+    'timeZone'  => 'America/Bogota',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',

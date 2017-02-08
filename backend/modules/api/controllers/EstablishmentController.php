@@ -33,20 +33,20 @@ class EstablishmentController extends ActiveController
         $arrayDatos = Yii::$app->request->post();
         if($this->getValidateIsArrayMultidimencional($arrayDatos) == true){
             foreach ($arrayDatos as $key => $value) {
-                $establishment = new Establishment(); 
-                $establishment->load($arrayDatos[$key],'');
-                if($establishment->save() != 1){
-                    $this->setSaveLogEstablishment($arrayDatos[$key],$establishment->getErrors());
+                $establishment = $this->setSaveEstablishment($arrayDatos[$key]);
+                if($establishment != 1){
+                    $this->setSaveLogEstablishment($arrayDatos[$key],$establishment);
                 }
             }
         }else{
-            $establishment = new Establishment(); 
-            $establishment->load($arrayDatos,'');
-            if($establishment->save() != 1){
-                $this->setSaveLogEstablishment($arrayDatos,$establishment->getErrors());
+            $establishment = $this->setSaveEstablishment($arrayDatos);
+            if($establishment != 1){
+                
+                print_r($establishment);
+                
+                $this->setSaveLogEstablishment($arrayDatos,$establishment);
             }
         }
-        
         return $establishment;
     }
     
@@ -75,6 +75,15 @@ class EstablishmentController extends ActiveController
         $logEstablishment->load($arrayDataEstablishment,'');
         $logEstablishment->save();
         return $logEstablishment;
+    }
+    
+    public function setSaveEstablishment($arrayData){
+        $establishment = new Establishment();
+        $establishment->load($arrayData,'');
+        if($establishment->save() != 1)
+            return $establishment->getErrors();
+        else
+            return true;
     }
 }
 
