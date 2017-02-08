@@ -32,16 +32,24 @@ class SynchronizationController extends Controller
     {
         $data = Yii::$app->request->getBodyParams();
         $content = [
-            'entity_id' => $data['id'],
-            'table_name' => $data['table_name'],
+            "entity_id" => $data['id'],
+            "table_name" => $data['table_name'],
             ];
+        $bod = [
+            "synchronize" => $content,
+        ];
         $client = new Client();
         $response = $client->createRequest()
         ->setFormat(Client::FORMAT_JSON)
         ->setMethod('POST')
-        ->setUrl('http://private-d4f2fa-ivc.apiary-mock.com/synchronization')
-        ->setData($content)
+        ->setUrl('http://192.168.88.212/axis2/services/IvcWebServices.IvcWebServicesHttpEndpoint/synchronize')
+        ->setData($bod)
         ->send();
-        return $response->data['status'];
+        if($response->isOk){
+        return $response->getData()["synchronizeResponse"]["return"];
+        }
+        return $response->getData()["Fault"]["faultstring"];
+
+     
     }
 }
