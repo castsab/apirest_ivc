@@ -31,12 +31,12 @@ class SynchronizationController extends Controller
     public function actionUpdate( )
     {
         $data = Yii::$app->request->getBodyParams();
-        if(array_key_exists("start_date", $data) && array_key_exists("end_date", $data)){
+        if(array_key_exists("consult_date", $data)){
             $content = [
             "entity_id" => $data['id'],
             "table_name" => $data['table_name'],
-            "start_date" => $data['start_date'],
-            "end_date" => $data['end_date'],   
+            "consult_date" => $data['consult_date'],
+            
             ];
         }else{
             $content = [
