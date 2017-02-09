@@ -31,17 +31,39 @@ class SynchronizationController extends Controller
     public function actionUpdate( )
     {
         $data = Yii::$app->request->getBodyParams();
-        $content = [
-            'entity_id' => $data['id'],
-            'table_name' => $data['table_name'],
+        if(array_key_exists("consult_date", $data)){
+            $content = [
+            "entity_id" => $data['id'],
+            "table_name" => $data['table_name'],
+            "consult_date" => $data['consult_date'],
+            
             ];
+        }else{
+            $content = [
+            "entity_id" => $data['id'],
+            "table_name" => $data['table_name'],
+            ];
+        }
+        
+        $bod = [
+            "synchronize" => $content,
+        ];
+        //$urlSOAP = 'http://192.168.88.212/axis2/services/IvcWebServices.IvcWebServicesHttpEndpoint/synchronize';
+        $urlSOAP = "http://private-d4f2fa-ivc.apiary-mock.com/synchronization";
         $client = new Client();
         $response = $client->createRequest()
         ->setFormat(Client::FORMAT_JSON)
         ->setMethod('POST')
-        ->setUrl('http://private-d4f2fa-ivc.apiary-mock.com/synchronization')
-        ->setData($content)
+        ->setUrl($urlSOAP)
+        ->setData($bod)
         ->send();
-        return $response->data['status'];
+        /*
+        if($response->isOk){
+        return $response->getData()["synchronizeResponse"]["return"];
+        }
+        return $response->getData()["Fault"]["faultstring"];
+        */
+        return $response->getData()["status"];
+     
     }
 }

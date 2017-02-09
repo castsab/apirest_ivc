@@ -1,5 +1,5 @@
 <?php
-require(__DIR__ . '../../../backend/models/Establishment.php');
+//require(__DIR__ . '../../../backend/models/Establishment.php');
 require(__DIR__ . '../../../backend/models/LogEstablishment.php');
 require(__DIR__ . '../../../backend/modules/api/controllers/EstablishmentController.php');
 
@@ -14,7 +14,7 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->arrayDatosTest = [
-            "upz" => "a",
+            "upz" => "8752",
             "lastname_owner" => "b",
             "lastname_legal_representative" => "c",
             "ciiu1" => "123",
@@ -47,7 +47,7 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
             "type_identification_establishment" => "a",
             "type_identification_owner" => "a",
             "type_identification_legal_representative" => "a",
-            "neighborhood_code" => "16067BD "
+            "neighborhood_code" => "16067BD"
         ];
     }
     
