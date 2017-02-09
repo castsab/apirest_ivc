@@ -48,8 +48,8 @@ class SynchronizationController extends Controller
         $bod = [
             "synchronize" => $content,
         ];
-        //$urlSOAP = 'http://192.168.88.212/axis2/services/IvcWebServices.IvcWebServicesHttpEndpoint/synchronize';
-        $urlSOAP = "http://private-d4f2fa-ivc.apiary-mock.com/synchronization";
+        $urlSOAP = 'http://192.168.88.212/axis2/services/IvcWebServices.IvcWebServicesHttpEndpoint/synchronize';
+        //$urlSOAP = "http://private-d4f2fa-ivc.apiary-mock.com/synchronization";
         $client = new Client();
         $response = $client->createRequest()
         ->setFormat(Client::FORMAT_JSON)
@@ -57,13 +57,13 @@ class SynchronizationController extends Controller
         ->setUrl($urlSOAP)
         ->setData($bod)
         ->send();
-        /*
+        
         if($response->isOk){
         return $response->getData()["synchronizeResponse"]["return"];
         }
         return $response->getData()["Fault"]["faultstring"];
-        */
-        return $response->getData()["status"];
+        
+        //return $response->getData()["status"];
      
     }
 }
