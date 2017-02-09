@@ -31,7 +31,7 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
             "digit_verification_legal_representative" => "a",
             "locality" => "a",
             "email" => "a",
-            "commercial_registration" => "57778",
+            "commercial_registration" => "112322",
             "commercial_registration_owner" => "a",
             "number_identification_establishment" => "a",
             "number_identification_owner" => "a",
@@ -41,12 +41,13 @@ class EstablishmentTest extends \PHPUnit_Framework_TestCase
             "observation" => "a",
             "observation_history" => "a",
             "page_web" => "a",
-            "business_name" => "Establicimiento1",
+            "business_name" => "fsadfxtttt",
             "phone" => "a",
             "type_history" => "a",
             "type_identification_establishment" => "a",
             "type_identification_owner" => "a",
-            "type_identification_legal_representative" => "a"
+            "type_identification_legal_representative" => "a",
+            "neighborhood_code" => "16067BD"
         ];
     }
     

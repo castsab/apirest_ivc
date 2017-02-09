@@ -93,11 +93,10 @@ class Establishment extends \yii\db\ActiveRecord
             [['neighborhood_code'], 'string', 'max' => 7],
             [['phone_two'], 'string', 'max' => 15],
             [['type_establishment_code'], 'string', 'max' => 8],
-            [['name_type_establishment', 'name_economic_activity'], 'string', 'max' => 150],
-            
+            [['name_type_establishment'], 'string', 'max' => 150],
+            [['name_economic_activity'], 'string', 'max' => 500],
             [['business_name'], 'required'],
             [['commercial_registration','business_name'], 'unique'],
-            [['commercial_registration','business_name'],'checkCharactersNotValid'],
             
         ];
     }

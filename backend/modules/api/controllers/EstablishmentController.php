@@ -79,11 +79,16 @@ class EstablishmentController extends ActiveController
     
     public function setSaveEstablishment($arrayData){
         $establishment = new Establishment();
-        $establishment->load($arrayData,'');
+        $arrayDataEstablishment = $this->setCleanArray($arrayData);
+        $establishment->load($arrayDataEstablishment,'');
         if($establishment->save() != 1)
             return $establishment->getErrors();
         else
             return true;
+    }
+    
+    public function setCleanArray($arrayData){
+        return array_map('utf8_encode',array_map('trim',$arrayData));
     }
 }
 
