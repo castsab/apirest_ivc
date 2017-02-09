@@ -97,7 +97,6 @@ class Establishment extends \yii\db\ActiveRecord
             
             [['business_name'], 'required'],
             [['commercial_registration','business_name'], 'unique'],
-            [['commercial_registration','business_name'],'checkCharactersNotValid'],
             
         ];
     }
