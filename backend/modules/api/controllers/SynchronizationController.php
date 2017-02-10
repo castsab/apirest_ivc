@@ -49,7 +49,7 @@ class SynchronizationController extends Controller
             "synchronize" => $content,
         ];
 
-        $urlSOAP = "http://54.149.120.9:8080/axis2/services/IvcWebServices.IvcWebServicesHttpEndpoint/synchronize";
+        $urlSOAP = \Yii::$app->params['urlSOAP'];
         
         $client = new Client();
         $response = $client->createRequest()
