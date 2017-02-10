@@ -48,9 +48,9 @@ class SynchronizationController extends Controller
         $bod = [
             "synchronize" => $content,
         ];
-        
-        //$urlSOAP = 'http://192.168.88.212/axis2/services/IvcWebServices.IvcWebServicesHttpEndpoint/synchronize';
+
         $urlSOAP = "http://54.149.120.9:8080/axis2/services/IvcWebServices.IvcWebServicesHttpEndpoint/synchronize";
+        
         $client = new Client();
         $response = $client->createRequest()
         ->setFormat(Client::FORMAT_JSON)
@@ -58,13 +58,13 @@ class SynchronizationController extends Controller
         ->setUrl($urlSOAP)
         ->setData($bod)
         ->send();
-        /*
+        
         if($response->isOk){
         return $response->getData()["synchronizeResponse"]["return"];
         }
         return $response->getData()["Fault"]["faultstring"];
-        */
-        return $response->getData()["status"];
+        
+        //return $response->getData()["status"];
      
     }
 }
