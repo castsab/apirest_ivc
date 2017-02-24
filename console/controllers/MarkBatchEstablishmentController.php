@@ -9,6 +9,7 @@ use Yii;
 class MarkBatchEstablishmentController extends Controller {
 
     public function actionIndex() {
+        $this->setResetBatch();
         $batch = 0;
         static::setMarkBatchEstablishment($batch);
     }
@@ -42,6 +43,12 @@ class MarkBatchEstablishmentController extends Controller {
                    FOR UPDATE
                 ) sub
                 WHERE item.id = sub.id";
+        $connection->createCommand($sql)->execute();
+    }
+    
+    private function setResetBatch(){
+        $connection = \Yii::$app->db;
+        $sql = "UPDATE establishment SET batch = 0";
         $connection->createCommand($sql)->execute();
     }
 

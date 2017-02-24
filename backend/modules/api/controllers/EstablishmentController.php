@@ -93,8 +93,17 @@ class EstablishmentController extends ActiveController
     }
     
     public function actionIndex(){
-        $establishment = new Establishment();
-        return $establishment->findAll(['id'=>156675]);
+        ini_set('memory_limit', '-1');
+        
+        $arrayDatos = Yii::$app->request->get();
+        $batch = (array_key_exists('batch',$arrayDatos))?$arrayDatos['batch']:'';
+        
+        if($batch){
+            $establishment = new Establishment();
+            return $establishment->findAll(['batch'=>$batch]);
+        }else{
+            return false;
+        }
     }
 }
 
