@@ -58,6 +58,7 @@ use Yii;
  * @property string $type_establishment_code
  * @property string $name_type_establishment
  * @property string $name_economic_activity
+ * @property int $batch
  * 
  * @property Visit[] $visits
  */
@@ -97,7 +98,7 @@ class Establishment extends \yii\db\ActiveRecord
             [['name_economic_activity'], 'string', 'max' => 500],
             [['business_name'], 'required'],
             [['commercial_registration','business_name'], 'unique'],
-            
+            [['batch'], 'integer'],
         ];
     }
 

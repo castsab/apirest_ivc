@@ -16,6 +16,7 @@ class EstablishmentController extends ActiveController
     public function actions(){
         $actions = parent::actions();
         unset($actions['create']);
+        unset($actions['index']);
         return $actions;
     }
 
@@ -89,6 +90,11 @@ class EstablishmentController extends ActiveController
     
     public function setCleanArray($arrayData){
         return array_map('utf8_encode',array_map('trim',$arrayData));
+    }
+    
+    public function actionIndex(){
+        $establishment = new Establishment();
+        return $establishment->findAll(['id'=>156675]);
     }
 }
 
